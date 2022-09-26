@@ -1,9 +1,11 @@
 import { gql, useQuery } from "@apollo/client";
 
 const GET_CHARS = gql`
-  query {
-    character(id: 1) {
-      name
+    query {
+    todos {
+      id
+      text
+      status
     }
   }
 `;
