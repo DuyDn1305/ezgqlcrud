@@ -1,18 +1,26 @@
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider
+} from "react-router-dom";
 import "./index.css";
+import Home from "./pages/home/Home";
+import Login from "./pages/login/Login";
 
-const apolloClient = new ApolloClient({
-  uri: "http://localhost:8081/query",
-  cache: new InMemoryCache()
-});
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/">
+      <Route index element={<Home />} />
+      <Route path="login" element={<Login />} />
+    </Route>
+  )
+);
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ApolloProvider client={apolloClient}>
-      <App />
-    </ApolloProvider>
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
