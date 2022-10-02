@@ -58,6 +58,7 @@ type Query {
     ids: [ID!]!
   ): [Node]!
   todos: [Todo!]!
+  getsample: Int
 }
 """The builtin Time type"""
 scalar Time

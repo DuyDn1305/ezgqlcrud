@@ -25,6 +25,11 @@ func (r *queryResolver) Todos(ctx context.Context) ([]*ent.Todo, error) {
 	return r.client.Todo.Query().All(ctx)
 }
 
+// Getsample is the resolver for the getsample field.
+func (r *queryResolver) Getsample(ctx context.Context) (*int, error) {
+	panic(fmt.Errorf("not implemented: Getsample - getsample"))
+}
+
 // Query returns QueryResolver implementation.
 func (r *Resolver) Query() QueryResolver { return &queryResolver{r} }
 

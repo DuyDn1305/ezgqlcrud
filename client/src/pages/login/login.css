@@ -1,0 +1,50 @@
+.remember-box {
+  @apply absolute transition-all duration-300;
+}
+
+.bg-login {
+  background: rgb(53, 59, 72);
+  background: linear-gradient(
+    106deg,
+    rgba(53, 59, 72, 1) 73%,
+    rgba(39, 60, 117, 1) 100%
+  );
+}
+
+.login-switch-btn {
+  @apply hover:text-[#00a8ff] hover:tracking-wider transition-all duration-150;
+}
+
+.login-switch-btn > i {
+  opacity: 0;
+}
+
+.login-switch-btn:hover > i {
+  opacity: 1;
+}
+
+.user-input {
+  background-color: #f5f6fa;
+  border-left: 5px solid #00a8ff;
+  padding: 10px;
+}
+
+.login-panel {
+  @apply absolute inset-0 p-28 transition-transform duration-700;
+}
+
+.login-panel-up {
+  @apply -translate-y-full;
+}
+
+.phase-signup .login-panel-up {
+  @apply translate-y-0;
+}
+
+.login-panel-down {
+  @apply translate-y-0;
+}
+
+.phase-signup .login-panel-down {
+  @apply translate-y-full;
+}

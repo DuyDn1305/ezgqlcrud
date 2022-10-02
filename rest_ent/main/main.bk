@@ -1,0 +1,66 @@
+package main
+
+import (
+	"context"
+	"log"
+	"restent/ent"
+	_ "restent/ent/runtime"
+	"restent/main/myroute"
+
+	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/gin"
+	_ "github.com/lib/pq"
+)
+
+func main() {
+	client, err := ent.Open("postgres", "host=localhost port=5432 user=postgres dbname=restent password=root sslmode=disable")
+	if err != nil {
+		log.Fatalf("failed opening connection to postgres: %v", err)
+	}
+	defer client.Close()
+	// Run the auto migration tool.
+	ctx := context.Background()
+	if err := client.Schema.Create(ctx); err != nil {
+		log.Fatalf("failed creating schema resources: %v", err)
+	}
+
+	// new_user, err := client.User.Create().SetEmail("duydn131@email.com").SetPassword("123456").Save(ctx)
+	// if err != nil {
+	// 	fmt.Print("error:", err)
+	// }
+
+	// fmt.Println(new_user)
+
+	// u, err := client.User.Query().Where(user.Email("duydn127@email.com")).Only(ctx)
+	// fmt.Println(u)
+
+	// u, err = u.Update().SetPassword("abcdef").Save(ctx)
+	// if err != nil {
+	// 	fmt.Print("error:", err)
+	// }
+	// fmt.Println(u)
+	// makeHandler := func(handler func(http.ResponseWriter, *http.Request, *ent.Client, context.Context)) func(http.ResponseWriter, *http.Request) {
+	// 	return func(w http.ResponseWriter, r *http.Request) {
+	// 		handler(w, r, client, ctx)
+	// 	}
+	// }
+	// http.HandleFunc("/users", makeHandler(myroute.User.GetUsers))
+	// http.HandleFunc("/cates", makeHandler(myroute.Cate.GetCates))
+
+	// log.Fatal(http.ListenAndServe(":8080", nil))
+
+	// r := gin.New()
+	// r.Use(getCors())
+
+	// myroute.User.Init(r.Group("/user"), client, ctx)
+	// myroute.Cate.Init(r.Group("/cate"), client, ctx)
+
+	// r.Run(":8080")
+
+}
+
+// func getCors() gin.HandlerFunc {
+// 	config := cors.DefaultConfig()
+// 	config.AllowOrigins = []string{"http://127.0.0.1:5173", "http://localhost:5173"}
+// 	return cors.New(config)
+// }

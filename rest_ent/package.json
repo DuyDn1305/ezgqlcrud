@@ -1,0 +1,20 @@
+{
+  "name": "rest_ent",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dbbuild": "go run ./main/tools/build",
+    "gen": "go generate ./ent",
+    "migrate": "npm run gen && npm run dbbuild",
+    "dbseed": "go run ./main/tools/seeding --replace",
+    "dbtest": "go run ./main/tools/test",
+    "dev": "nodemon -w main -e go -x \"cls && go build ./main && main \""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
